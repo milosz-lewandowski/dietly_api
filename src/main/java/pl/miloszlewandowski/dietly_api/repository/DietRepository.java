@@ -1,12 +1,16 @@
 package pl.miloszlewandowski.dietly_api.repository;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import pl.miloszlewandowski.dietly_api.model.Diet;
+import pl.miloszlewandowski.dietly_api.model.DietCalories;
+import pl.miloszlewandowski.dietly_api.model.DietOption;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Component
+
+@Repository
 public class DietRepository {
 
     Set<Diet> diets;
@@ -57,5 +61,46 @@ public class DietRepository {
         return editedDiet;
     }
 
+    public void loadData(){
+        Diet diet1 = new Diet();
+        diet1.setDietId(1);
+        diet1.setName("diet1");
+        diet1.setDescription("dieta 1");
 
+        //  create DietOption Set
+        Set<DietOption> dietOptionSet1 = new HashSet<>();
+
+        //  create DietOption Object
+        DietOption dietOption1 = new DietOption();
+        dietOption1.setDietOptionId(1);
+        dietOption1.setDiet(diet1);
+        dietOption1.setAbbreviation("abbreviation1");
+
+        //  create DietCalories Set
+        Set<DietCalories> dietCaloriesSet1 = new HashSet<>();
+
+        //  create DietCalories Object
+        DietCalories dietCalories1 = new DietCalories();
+        dietCalories1.setDietCaloriesId(1);
+        dietCalories1.setCalories(1000);
+
+        //  add object to Set
+        dietOptionSet1.add(dietOption1);
+        dietCaloriesSet1.add(dietCalories1);
+
+        diet1.setDietOptions(dietOptionSet1);
+
+        dietCalories1.setDietOption(dietOption1);
+        saveDiet(diet1);
+    }
+
+//    private DietOption getDietOptionById(Integer dietId, Integer dietOptionId){
+//        return getDietById(dietId).getDietOptions().stream().filter(
+//                dietOption -> dietOption.getDietOptionId()
+//                        .equals(dietOptionId)).findFirst().orElse(null);
+//    }
+//
+//    private void createDietOption(Integer dietID, DietOption dietOption){
+//
+//    }
 }
