@@ -1,0 +1,17 @@
+{
+  "diets" : [
+    {
+      "dietId" : "int",
+      "dietName" : "String",
+      "description" : "",
+      "dietOptions" : [
+        {
+
+        }
+      ]
+
+    }
+      ]
+    }
+
+
